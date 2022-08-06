@@ -46,42 +46,24 @@ void PrintArr(int[,] array)
 FillArr(array);
 PrintArr(array);
 
-int max = array[0,0];
-int maxI = 0;
-int temp = 0;
-int min = 1;
+
 for (int i = 0; i < m; i++)
 {
-    
-    for (int end = n; end > 1; end--)
+    for (int j = 0; j < n; j++)
     {
-        max = array[i,0];
-        temp = 0;
-        maxI = 0;
-        
-        for (int j = 1; j < end; j++)
-            {
-                if(max < array[i,j])
-                {
-                    max = array[i,j];
-                    maxI = j;
-                
-                }
-                
-            }
-
-        if(max > array[i,end-1])
+        for (int k = 0; k < n - 1; k++)
         {
-        temp = array[i,maxI];
-        array[i,maxI] = array[i,end-1];
-        array[i,end-1] = temp;
-        
+            if(array[i,k] < array[i, k + 1])
+            {
+                int buff = array[i, k + 1];
+                array[i,k+1] = array[i,k];
+                array[i,k] = buff;
+            }
         }
-        
     }
-   
-    
 }
+
+
 Console.WriteLine($"Новый массив: ");
 
 PrintArr(array);
